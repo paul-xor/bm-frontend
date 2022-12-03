@@ -1,4 +1,4 @@
-export const selectMembers = (state) => ({
+export const selectMembersInfo = (state) => ({
   status: state.members.status,
   error: state.members.error,
   qty: state.members.list.length,

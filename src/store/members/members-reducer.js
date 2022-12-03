@@ -1,4 +1,4 @@
-import { SET_MEMBERS, SET_ERROR, SET_LOADING } from './albums-actions'
+import { SET_MEMBERS, SET_ERROR, SET_LOADING } from './members-actions'
 
 const intialState = {
   status: 'idle', // loading / recieved / rejected
