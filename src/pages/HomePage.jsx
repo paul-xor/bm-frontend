@@ -7,7 +7,6 @@ import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
 import { selectAllMembers, selectMembersInfo } from '../store/members/members-selectors';
 import { loadMembers } from '../store/members/members-actions'
-import { randomNumber } from '../utils/utils'
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -44,7 +43,7 @@ export const HomePage = () => {
                 },
                 {
                   title: 'Age',
-                  description: randomNumber(20,80),
+                  description: c.age,
                 },
               ],
             };
