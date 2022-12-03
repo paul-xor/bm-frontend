@@ -5,14 +5,16 @@ import { useEffect } from 'react'
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
-import { selectAllMembers, selectMembersInfo } from '../store/members/members-selectors';
+import { selectVisiableMembers, selectMembersInfo } from '../store/members/members-selectors';
 import { loadMembers } from '../store/members/members-actions'
+import { selectSearch } from '../store/controls/controls-selector'
 
 export const HomePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const members = useSelector(selectAllMembers)
   const { status, error, qty } = useSelector(selectMembersInfo)
+  const search = useSelector(selectSearch)
+  const members = useSelector(state => selectVisiableMembers(state, {search}))
 
   const thumbnailUrl = 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2062&q=80'
 
@@ -21,7 +23,6 @@ export const HomePage = () => {
       dispatch(loadMembers())
     }
   }, [qty, dispatch])
-
 
   return (
     <>

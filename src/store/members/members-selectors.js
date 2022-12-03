@@ -5,3 +5,9 @@ export const selectMembersInfo = (state) => ({
 })
 
 export const selectAllMembers = (state) => state.members.list
+
+export const selectVisiableMembers = (state, { search = '' }) => {
+  return state.members.list.filter(
+    member => member.name.toLowerCase().includes(search.toLowerCase())
+  )
+}
