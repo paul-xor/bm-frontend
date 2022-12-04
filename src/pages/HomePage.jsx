@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { List } from '../components/List';
 import { Card } from '../components/Card';
 import { Controls } from '../components/Controls';
+import { Info } from '../components/Info'
 import { selectVisiableMembers, selectMembersInfo } from '../store/members/members-selectors';
 import { loadMembers } from '../store/members/members-actions'
 import { selectControls } from '../store/controls/controls-selector'
@@ -30,7 +31,6 @@ export const HomePage = () => {
 
       {error && <h2>Can't fetch data</h2>}
       {status === 'loading' && <h2>Loading ... </h2>}
-      {console.log('status: ', status, members)}
       {status === 'recieved' && (
         <List>
           {members.map((c) => {
@@ -63,6 +63,7 @@ export const HomePage = () => {
           })}
         </List>
       )}
+      <Info count={members.length} />
     </>
   );
 };
