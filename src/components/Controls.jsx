@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux'
+import { selectActivity } from '../store/controls/controls-selector'
 
 import { Search } from './Search';
 import { CustomSelect } from './CustomSelect';
+import { setActivity } from '../store/controls/controls-actions';
 
 const optionsMap = {
   'Hiking': { value: 'Hiking', label: 'Hiking' },
@@ -23,6 +26,13 @@ const Wrapper = styled.div`
 `;
 
 export const Controls = () => {
+  const dispatch = useDispatch()
+  const activity = useSelector(selectActivity)
+
+  const handleSelect = (act) => {
+    dispatch(setActivity(act?.value || ''))
+  }
+
   return (
     <Wrapper>
       <Search />
@@ -31,8 +41,8 @@ export const Controls = () => {
         placeholder="Filter by Activity"
         isClearable
         isSearchable={false}
-        value={''}
-        onChange={() => {}}
+        value={optionsMap[activity]}
+        onChange={handleSelect}
       />
     </Wrapper>
   );

@@ -1,4 +1,4 @@
-import { randomNumber  } from '../../utils/utils'
+import { randomNumber, randActivity } from '../../utils/utils'
 
 export const SET_MEMBERS  = '@@members/SET_MEMBERS'
 export const SET_LOADING = '@@members/SET_LOADING'
@@ -23,8 +23,9 @@ export const loadMembers = () => (dispatch, _, {client, api}) => {
   client.get(api.ALL_MEMBERS)
     .then(({ data }) => {
       // Note: I am adding more data (age, activity) required by test.
-      data.forEach(element => {
+      data.forEach((element, ind) => {
         element.age = randomNumber(20,80)
+        element.activities = randActivity(randomNumber(1,3))
       });
       dispatch(setMembers(data))
     })

@@ -6,8 +6,11 @@ export const selectMembersInfo = (state) => ({
 
 export const selectAllMembers = (state) => state.members.list
 
-export const selectVisiableMembers = (state, { search = '' }) => {
+export const selectVisiableMembers = (state, { search = '', activity = '' }) => {
   return state.members.list.filter(
-    member => member.name.toLowerCase().includes(search.toLowerCase())
+    member => {
+      return (
+        member.name.toLowerCase().includes(search.toLowerCase()) && member.activities.includes(activity)
+      )}
   )
 }
